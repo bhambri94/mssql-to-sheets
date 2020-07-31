@@ -1,0 +1,11 @@
+{
+    "SpreadsheetID" : "11nnvEQ-Jf-JQnZVgDnF-U0XbaRRgl-wRqdfyahayTZU",
+    "SheetNameWithRange":"CustomerLostDetails",
+    "MSSQLHost":"localhost",
+    "DatabaseName":"TestDB",
+    "UserName":"sa",
+    "Password":"Test@1234",
+    "Query":"Select * from BI_CustLost_Data_Model",
+    "DateColumnName":"LostDate",
+    "OldDataRequired":true
+}
