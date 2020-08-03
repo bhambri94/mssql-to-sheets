@@ -21,7 +21,7 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 	}
 
 	println("Running Query -> " + configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " > " + fromDateTime + " & scan")
-	Rows, err := DBConnection.Query(configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " > '" + fromDateTime + "'")
+	Rows, err := DBConnection.Query(configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " > '" + fromDateTime + "'" + " order by " + configs.Configurations.DateColumnName + " asc")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,11 +29,12 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 	var finalValues [][]interface{}
 	for Rows.Next() {
 		fmt.Println("adding rows to finalValues")
+		var NumericToString []uint8
 		singleRow := make([]interface{}, 12)
-		if err := Rows.Scan(&singleRow[0], &singleRow[1], &singleRow[2], &singleRow[3], &singleRow[4], &singleRow[5], &singleRow[6], &singleRow[7], &singleRow[8], &singleRow[9], &singleRow[10], &singleRow[11]); err != nil {
+		if err := Rows.Scan(&singleRow[0], &singleRow[1], &singleRow[2], &singleRow[3], &singleRow[4], &singleRow[5], &singleRow[6], &NumericToString, &singleRow[8], &singleRow[9], &singleRow[10], &singleRow[11]); err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(singleRow)
+		singleRow[7] = B2S(NumericToString)
 		finalValues = append(finalValues, singleRow)
 	}
 
@@ -41,4 +42,12 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 	DBConnection.Close()
 	return finalValues
 
+}
+
+func B2S(bs []uint8) string {
+	ba := []byte{}
+	for _, b := range bs {
+		ba = append(ba, byte(b))
+	}
+	return string(ba)
 }
