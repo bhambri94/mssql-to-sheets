@@ -41,6 +41,8 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 
 	var finalValues [][]interface{}
 	for Rows.Next() {
+		BlankRow := make([]interface{}, 12)
+		finalValues = append(finalValues, BlankRow)
 		fmt.Println("adding rows to finalValues")
 		var NumericToString []uint8
 		var QuotationDate string
@@ -50,7 +52,7 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 			log.Fatal(err)
 		}
 		singleRow[7] = B2S(NumericToString)
-		singleRow[3] = QuotationDate[:10]
+		singleRow[3] = QuotationDate
 		singleRow[11] = LostDate[:10]
 		finalValues = append(finalValues, singleRow)
 	}

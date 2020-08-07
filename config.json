@@ -1,6 +1,6 @@
 {
     "SpreadsheetID" : "11nnvEQ-Jf-JQnZVgDnF-U0XbaRRgl-wRqdfyahayTZU",
-    "SheetNameWithRange":"TestCustomerLostDetails1!A2",
+    "SheetNameWithRange":"TestCustomerLostDetails2!A2",
     "MSSQLHost":"localhost",
     "DatabaseName":"TestDB",
     "UserName":"sa",
