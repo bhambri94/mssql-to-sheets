@@ -40,9 +40,9 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 	}
 
 	var finalValues [][]interface{}
+	BlankRow := make([]interface{}, 12)
+	finalValues = append(finalValues, BlankRow)
 	for Rows.Next() {
-		BlankRow := make([]interface{}, 12)
-		finalValues = append(finalValues, BlankRow)
 		fmt.Println("adding rows to finalValues")
 		var NumericToString []uint8
 		var QuotationDate string
