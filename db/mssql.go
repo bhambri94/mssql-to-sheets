@@ -33,8 +33,8 @@ func GetLatestDataFromSQL(fromDateTime string) [][]interface{} {
 		}
 	}
 
-	println("Running Query -> " + configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " > " + fromDateTime + " & scan")
-	Rows, err := DBConnection.Query(configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " > '" + fromDateTime + "'" + " order by " + configs.Configurations.DateColumnName + " asc")
+	println("Running Query -> " + configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " = " + fromDateTime + " & scan")
+	Rows, err := DBConnection.Query(configs.Configurations.Query + " where " + configs.Configurations.DateColumnName + " = '" + fromDateTime + "'" + " order by " + configs.Configurations.DateColumnName + " asc")
 	if err != nil {
 		log.Fatal(err)
 	}
